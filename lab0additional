@@ -1,0 +1,31 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int linearSearch(int arr[],int size, int key){
+	for(int i= 0; i<size; i++){
+		if(arr[i]==key) return 1;
+	}
+	return -1;
+}
+
+int main(int argc, char **argv)
+{
+	int *arr,n,key,arrsize;
+	ifstream inFile;
+	inFile.open("/home/bmsce/Documents/adalab/lab0additional/test.txt"); // file with test cases
+	if(!inFile){
+		cout<<"Something unexpected has occurred";
+		return -1;
+	}
+	inFile>>n;
+	for(int i=0; i<n; i++){
+		inFile>>arrsize;
+		inFile>>key;
+		arr = new int[arrsize];
+		for(int j = 0; j<arrsize;j++)
+			inFile>>arr[j];
+		cout<<linearSearch(arr,arrsize,key)<<endl;
+	}
+	return 0;
+}
