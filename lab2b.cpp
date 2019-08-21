@@ -1,3 +1,4 @@
+
 #include <iostream>
 using namespace std;
 
@@ -5,8 +6,8 @@ void largestElements(int A[], int n, int k){
 	int i,j,temp;
 	for(i=0;i<k;i++){
 		for(j=0; j<n-1-i;j++){
-			if(A[j+1]<A[j]){
-				temp = A[j];
+			if(A[j]>A[j+1]){
+				temp = A[j+1];
 				A[j+1]=A[j];
 				A[j]=temp;
 			}
