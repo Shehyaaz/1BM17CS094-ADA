@@ -3,6 +3,7 @@
 #include <cmath>
 using namespace std;
 
+int count = 0;
 bool place(int *x, int k, int i){
 	for(int j=1;j<k;j++){
 		if((x[j] == i) || (abs(x[j]-i) == abs(j-k))) // in the same column or diagonal
@@ -15,10 +16,19 @@ void nQueens(int *x, int k, int n){
 	for(int i=1; i<=n; i++){
 		if(place(x,k,i)){
 			x[k]=i;
-			if(k==n){
-				for(int l=1;l<=n;l++)
-					cout<<x[l]<<"\t";
-				cout<<"\n";
+			if(k == n){
+				count++;
+				cout<<"\n\nSolution "<<count<<":\n"; 
+				for(int l=1;l<=n;l++){
+					for(int m=1;m<=n;m++){
+						if(m == x[l])
+							cout<<"Q\t";
+						else
+							cout<<"-\t";					
+					}
+					cout<<"\n";
+				}
+				break;
 			}
 			else
 				nQueens(x,k+1,n);
