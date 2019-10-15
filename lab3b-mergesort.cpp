@@ -3,7 +3,7 @@
 using namespace std;
 
 void combine(int a[], int low, int mid, int high){
-	int c[high];
+	int c[high-low+1];
 	int i = low, j = mid+1, k = 0;
 	while(i<= mid && j<= high){
 		if(a[i]<a[j])
