@@ -99,7 +99,7 @@ void findSmallestRange(int **arr, int n,int k)
 		harr[i].j = 1; // Index of next element to be stored 
 					// from list 
 
-		// store max element in the min heap
+		// find max element in the min heap
 		if (harr[i].element > max) 
 			max = harr[i].element; 
 	} 
@@ -110,11 +110,11 @@ void findSmallestRange(int **arr, int n,int k)
 	// heap and replace it with next element of its list 
 	while (1) 
 	{ 
-		// Get the minimum element and store it in output 
+		// Get the minimum element and store it 
 		MinHeapNode root = hp.getMin(); 
 
 		// update min 
-		min = hp.getMin().element; 
+		min = root.element; 
 
 		// update range 
 		if (range > max - min + 1) 
