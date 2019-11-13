@@ -17,7 +17,11 @@ struct MinHeapNode
 }; 
 
 // function to swap two min heap nodes 
-void swap(MinHeapNode *x, MinHeapNode *y); 
+void swap(MinHeapNode *x, MinHeapNode *y){
+	MinHeapNode *temp = x;
+	x = y;
+	y = temp;
+}//end of method 
 
 // A class for Min Heap 
 class MinHeap 
