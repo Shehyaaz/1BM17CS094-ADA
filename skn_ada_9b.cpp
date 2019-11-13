@@ -2,55 +2,78 @@
 Question 9b : Prim's Algorithm to find minimum cost spanning tree.
 */
 
-#include <iostream>
-#include <climits>
-using namespace std;
-
-void prims(int **cost, int n){
-	int n_edges = 0;
-	int mincost = 0;
-	int min, u, v;
-	int *elec = new int[n];
-	for(int i = 0; i<n; i++) 
-		elec[i]=1;
-	while(n_edges != n-1){
-		 min =  INT_MAX;
-		 for(int i = 0; i<n; i++)
-		 	for(int j = 0; j<n; j++)
-		 		if(elec[i])
-		 			if(cost[i][j] < min){
-		 				min = cost[i][j];
-		 				u = i;
-		 				v = j;
-		 			}//end of if
-		 //end of for
-		 if(elec[v]!=1){
-		 	cout<<"u :"<<u<<"v :"<<v<<"min :"<<min<<endl;
-		 	elec[v] = 1;
-		 	n_edges = n_edges+1;
-		 	mincost = mincost+min;
-		 }//end of if
-		 cost[u][v] = INT_MAX;
-		 cost[v][u] = INT_MAX;
-	}//end of loop
-	cout<<"Min Cost : "<<mincost;
-}//end of method
-
-int main(){
-	int **cost, n;
-	cout<<"Enter number of vertices :";
-	cin>>n;
-	cost = new int*[n];
-	for(int i =0; i<n; i++) cost[i] = new int[n];
+#include <bits/stdc++.h> 
+using namespace std; 
+int V;
+int minKey(int key[], bool mstSet[]) 
+{ 
 	
-	cout<<"Enter cost matrix :\n";
-	for(int i =0; i<n ;i++)
-		for(int j=0;j<n;j++)
-			cin>>cost[i][j];
-	prims(cost,n);
-	return 0;
-}//end of main
+	int min = INT_MAX, min_index; 
 
-/*
-OUPUT:
-*/
+	for (int v = 0; v < V; v++) 
+		if (mstSet[v] == false && key[v] < min) 
+			min = key[v], min_index = v; 
+
+	return min_index; 
+} 
+
+
+void printMST(int parent[], int **graph) 
+{ 
+	cout<<"Edge \tWeight\n"; 
+	for (int i = 1; i < V; i++) 
+		cout<<parent[i]<<" - "<<i<<" \t"<<graph[i][parent[i]]<<" \n"; 
+} 
+
+void primMST(int **graph) 
+{ 
+	
+	int parent[V]; 
+	
+	
+	int key[V]; 
+	
+
+	bool mstSet[V]; 
+
+	
+	for (int i = 0; i < V; i++) 
+		key[i] = INT_MAX, mstSet[i] = false; 
+	key[0] = 0; 
+	parent[0] = -1; 
+	for (int count = 0; count < V - 1; count++) 
+	{ 
+		int u = minKey(key, mstSet); 
+
+		 
+		mstSet[u] = true; 
+
+		
+		for (int v = 0; v < V; v++) 
+
+		
+			if (graph[u][v] && mstSet[v] == false && graph[u][v] < key[v]) 
+				parent[v] = u, key[v] = graph[u][v]; 
+	} 
+
+	
+	printMST(parent, graph); 
+} 
+int main() 
+{ 
+	cout<<"enter the number of nodes: "<<endl;
+	cin>>V;
+	int **graph=new int*[V];
+	for(int i=0;i<V;i++)
+		graph[i]=new int[V];
+	cout<<"\n enter the adjascency matrix: "<<endl;
+	for(int i=0;i<V;i++)
+		for(int j=0;j<V;j++)
+			cin>>graph[i][j];
+			
+	
+
+	primMST(graph); 
+
+	return 0; 
+} 
