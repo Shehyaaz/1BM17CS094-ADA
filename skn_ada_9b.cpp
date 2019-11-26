@@ -2,7 +2,8 @@
 Question 9b : Prim's Algorithm to find minimum cost spanning tree.
 */
 
-#include <bits/stdc++.h> 
+#include <iostream>
+#include <climits>
 using namespace std; 
 int V;
 int minKey(int key[], bool mstSet[]) 
